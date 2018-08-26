@@ -102,3 +102,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.config/
+.pki/
+.bash_history
+test.txt
+.sudo_as_admin_successful
