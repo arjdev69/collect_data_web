@@ -1,3 +1,4 @@
 scrapy
 urllib3
 beautifulsoup4
+django==2.1
