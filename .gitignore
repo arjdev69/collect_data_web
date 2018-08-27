@@ -108,3 +108,4 @@ venv.bak/
 test.txt
 .sudo_as_admin_successful
 .vscode/
+collect_env/
