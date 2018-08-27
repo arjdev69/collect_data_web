@@ -107,3 +107,4 @@ venv.bak/
 .bash_history
 test.txt
 .sudo_as_admin_successful
+.vscode/
