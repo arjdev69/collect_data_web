@@ -1,7 +1,20 @@
-# collect_data_web
-* collect data from Brazilian courts' websites.
+# Collect_data_web
 
-# Step
+Collect data from Brazilian courts' websites.
 
-* Running docker: ./docker/access_docker.sh
-* Running env: source crawlers/bin/activate
+## Step with docker
+
+    * Install docker: https://github.com/jobino/learning_docker
+
+    * Running docker: ./docker/access_docker.sh
+  
+    * Running shell file: ./run_project.sh
+
+## Step without docker
+
+    * install pip with python3
+    * curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    * python3 get-pip.py
+    * create a virtualenv. Suggestion name: "collect_env". Follow command -> (virtualenv collect_env)
+    * pip install -r requirements.txt
+    * python manage.py runserver
