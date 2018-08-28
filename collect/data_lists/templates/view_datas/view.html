@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
+
+  <title>Collect Data Web</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../static/css/view/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../../static/css/view/form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+  <header>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <strong>Collect Data Web</strong>
+        </a>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 order-md-1">
+        <form class="needs-validation" novalidate>
+          <div class="row">
+            <div class="col-md-5 mb-3">
+              <label for="country">Country</label>
+              <select class="custom-select d-block w-100" id="country" required>
+                <option value="">Choose...</option>
+                <option>United States</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="zip">Zip</label>
+              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <div class="invalid-feedback">
+                Zip code required.
+              </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <button class="btn btn-primary" type="submit">Get</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+      <h6 class="border-bottom border-gray pb-2 mb-0">Suggestions</h6>
+      {% for data in datas %}
+      <div class="media text-muted pt-3">
+        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">Full Name</strong>
+            <a href="#">Follow</a>
+          </div>
+          <span class="d-block">@username</span>
+        </div>
+      </div>
+      {% endfor %}
+
+      <small class="d-block text-right mt-3">
+        <a href="#">All suggestions</a>
+      </small>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2017-2018 Company Name</p>
+    </footer>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../../static/js/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../static/js/jquery-slim.min.js"><\/script>')</script>
+  <script src="../../static/js/popper.min.js"></script>
+  <script src="../../static/js/bootstrap.min.js"></script>
+  <script src="../../static/js/holder.min.js"></script>
+</body>
+
+</html>
