@@ -8,7 +8,13 @@ Collect data from Brazilian courts' websites.
 
     * Running docker: ./docker/access_docker.sh
   
-    * Running shell file: ./run_project.sh
+    * Running shell file: ./settings.sh
+
+    * Run: ./run.sh
+
+    * If Error: Error: That port is already in use. Solution: kill -9 -1 in your terminal.
+
+    * Otherwise access: localhost:8000.
 
 ## Step without docker
 
