@@ -29,36 +29,29 @@
   </header>
   <div class="container">
     <div class="row">
-      <div class="col-md-8 order-md-1">
-        <form class="needs-validation" novalidate>
+      <div class="col-md-8 order-md-2">
+          <hr class="mb-4">
+        <form class="needs-validation"  method="post" enctype="multipart/form-data">{% csrf_token %}
           <div class="row">
-            <div class="col-md-5 mb-3">
-              <label for="country">Country</label>
-              <select class="custom-select d-block w-100" id="country" required>
-                <option value="">Choose...</option>
-                <option>United States</option>
-              </select>
-              <div class="invalid-feedback">
-                Please select a valid country.
-              </div>
+            <div class="col-md-3 mb-3">
+              <label for="Tribunais">Tribunais</label>
+              {{ datas.Tribunais }}
             </div>
             <div class="col-md-3 mb-3">
-              <label for="zip">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
-              <div class="invalid-feedback">
-                Zip code required.
-              </div>
+              <label for="Processo">Processo</label>
+              {{ datas.Processos }}
+              <!--input type="text" class="form-control" id="zip" placeholder="" required-->
             </div>
           </div>
-          <hr class="mb-4">
           <button class="btn btn-primary" type="submit">Get</button>
         </form>
+        <hr class="mb-4">
       </div>
     </div>
 
     <div class="my-3 p-3 bg-white rounded box-shadow">
-      <h6 class="border-bottom border-gray pb-2 mb-0">Suggestions</h6>
       {% for data in datas %}
+      <h6 class="border-bottom border-gray pb-2 mb-0">Suggestions</h6>
       <div class="media text-muted pt-3">
         <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
         <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
