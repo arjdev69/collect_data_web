@@ -2,6 +2,3 @@
 virtualenv collect_env
 source collect_env/bin/activate
 pip install -r requirements.txt
-cd collect/
-chromium-browser&
-python manage.py runserver
