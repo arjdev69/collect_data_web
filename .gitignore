@@ -109,3 +109,4 @@ test.txt
 .sudo_as_admin_successful
 .vscode/
 collect_env/
+collect/data_lists/migrations/0001_initial.py
