@@ -23,5 +23,6 @@ Collect data from Brazilian courts' websites.
     * python3 get-pip.py
     * pip install virtualenv
     * create a virtualenv. Suggestion name: "collect_env". Follow command -> (virtualenv collect_env)
+    * source collect_env/bin/activate
     * pip install -r requirements.txt
     * Run: ./run.sh
