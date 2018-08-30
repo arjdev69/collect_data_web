@@ -110,3 +110,4 @@ test.txt
 .vscode/
 collect_env/
 collect/data_lists/migrations/0001_initial.py
+collect/data_lists/migrations/0002_auto_20180829_2247.py
