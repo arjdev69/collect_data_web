@@ -31,15 +31,16 @@
     <div class="row">
       <div class="col-md-8 order-md-2">
           <hr class="mb-4">
-        <form class="needs-validation"  method="post" enctype="multipart/form-data">{% csrf_token %}
+        <form class="needs-validation" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="Tribunais">Tribunais</label>
-              {{ datas.Tribunais }}
+              {{ datas.courts }}
             </div>
             <div class="col-md-3 mb-3">
               <label for="Processo">Processo</label>
-              {{ datas.Processos }}
+              {{ datas.processes }}
               <!--input type="text" class="form-control" id="zip" placeholder="" required-->
             </div>
           </div>
@@ -51,7 +52,7 @@
 
     <div class="my-3 p-3 bg-white rounded box-shadow">
       {% for data in datas %}
-      <h6 class="border-bottom border-gray pb-2 mb-0">Suggestions</h6>
+      <h6 class="border-bottom border-gray pb-2 mb-0">{{test}}</h6>
       <div class="media text-muted pt-3">
         <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
         <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
