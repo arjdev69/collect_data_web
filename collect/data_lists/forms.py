@@ -5,4 +5,4 @@ from .models import Data
 class DataForm(forms.ModelForm):
     class Meta:
         model = Data
-        fields = ('Processos', 'Tribunais',)
+        fields = ('processes', 'courts',)
