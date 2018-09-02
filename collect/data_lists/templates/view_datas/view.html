@@ -45,31 +45,43 @@
             </div>
           </div>
           <button class="btn btn-primary" type="submit">Get</button>
+          {% if ErrorMain %}
+            <h3>{{ErrorMain}}</h3>
+          {%endif%}
         </form>
         <hr class="mb-4">
       </div>
     </div>
-
     <div class="my-3 p-3 bg-white rounded box-shadow">
-      {% for data,value in final_data.items %}
-      <h6 class="border-bottom border-gray pb-2 mb-0">{{test}}</h6>
-      <div class="media text-muted pt-3">
-        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-        {{ data }}
-        {{ value }}
-        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <div class="d-flex justify-content-between align-items-center w-100">
-            <strong class="text-gray-dark">Full Name</strong>
-            <a href="#">Follow</a>
+      {% for data,key in final_data.items %}
+      <h6 class="border-bottom border-gray pb-2 mb-0">{{data}}</h6>
+        {% for values,y in key.items %}
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <strong class="text-gray-dark">{{ values }}</strong>
+              <a href="#"></a>
+            </div>
+            <span class="d-block">{{ y }}</span>
           </div>
-          <span class="d-block">@username</span>
         </div>
-      </div>
-      {% endfor %}
-
-      <small class="d-block text-right mt-3">
-        <a href="#">All suggestions</a>
-      </small>
+        {% endfor %}
+        {% endfor %}
+        {% if move%}
+          <h6 class="border-bottom border-gray pb-2 mb-0">Movimentações</h6>
+        {%endif%}
+          {% for date,value in move %}
+          <div class="media text-muted pt-3">
+            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong class="text-gray-dark">{{ date }}</strong>
+              </div>
+              <span class="d-block">{{ value }}</span>
+            </div>
+          </div>
+          {% endfor %}
     </div>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
