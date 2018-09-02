@@ -60,20 +60,6 @@ def add_date_move_list(td_datas,move_date,move_describe):
         move_describe.append(td_datas[i].text.strip())
   return move_date,move_describe
 
-def refactor_word(list_word,list_main):
-  word_not_space = []
-  for i in range(len(list_main)):
-    list_word[i] = list_main[i].replace(' ','').split()
-  for li in list_word:
-    for i in range(len(li)):
-      word_not_space.append(re.sub(r"(\w)([A-Z])", r"\1 \2", li[i]))
-  return word_not_space
-
-def remove_word(word_list,words):
-  for i in range(len(word_list)):
-    word_list[i] = word_list[i].replace(words[i],'')
-  return word_list
-
 def get_url(urlSite):
   urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
   http = urllib3.PoolManager()
