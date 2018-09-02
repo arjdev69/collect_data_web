@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import urllib3
 from more_itertools import unique_everseen
 from collections import OrderedDict
+from selenium import webdriver
 
 def get_content_html(page_formated,tag,class_tag,value_class):
   div_datas = page_formated.find_all(tag, {class_tag: value_class})
@@ -76,9 +77,10 @@ def remove_word(word_list,words):
 def get_url(urlSite):
   urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
   http = urllib3.PoolManager()
+  driver = webdriver.Firefox()
   try:
-    page_data = http.request('GET', urlSite)
-    page_formated = BeautifulSoup(page_data.data, "lxml")
+    driver.get(urlSite)
+    page_formated = BeautifulSoup(driver.page_source)
     return page_formated
   except:
     print("Error URL")
