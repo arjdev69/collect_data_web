@@ -109,5 +109,5 @@ test.txt
 .sudo_as_admin_successful
 .vscode/
 collect_env/
-collect/data_lists/migrations/0001_initial.py
-collect/data_lists/migrations/0002_auto_20180829_2247.py
+collect/data_lists/migrations/
+collect/data_lists/crawler/test.py
