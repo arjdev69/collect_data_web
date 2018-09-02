@@ -7,10 +7,10 @@ Collect data from Brazilian courts' websites.
     * Install docker: https://github.com/jobino/learning_docker
 
     * Running docker: ./docker/access_docker.sh
-  
+
     * Running shell file: ./settings.sh
 
-    * Run: ./run.sh
+    * Run: ./run.sh docker
 
     * If Error: Error: That port is already in use. Solution: kill -9 -1 in your terminal.
 
@@ -22,7 +22,7 @@ Collect data from Brazilian courts' websites.
     * curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     * python3 get-pip.py
     * pip install virtualenv
-    * create a virtualenv. Suggestion name: "collect_env". Follow command -> (virtualenv collect_env)
+    * create a virtualenv. Suggestion name: "collect_env". Follow command -> (virtualenv collect_env -p python3)
     * source collect_env/bin/activate
     * pip install -r requirements.txt
     * Run: ./run.sh

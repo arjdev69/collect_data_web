@@ -1,9 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib3
 from more_itertools import unique_everseen
-import re
 from collections import OrderedDict
-from itertools import zip_longest
 
 def get_content_html(page_formated,tag,class_tag,value_class):
   div_datas = page_formated.find_all(tag, {class_tag: value_class})
@@ -114,7 +112,6 @@ def set_dict(data_list):
   data_processes, alls_keys = put_key()
   for i in range(len(alls_keys)):
     data_processes[alls_keys[i]] = dict(zip(data_processes[alls_keys[i]], data_list[i]))
-  print(data_processes)
   return data_processes
 
 def put_key():
@@ -130,11 +127,3 @@ def get_value_tag(html, tag, value_class, specific_content):
   data_values = data_values.parent.text.strip()
   data_values = data_values.replace(specific_content, '')
   return data_values
-
-#def return_list_data():
-
-#print(get_url("https://www.tjms.jus.br/cpopg5/show.do?processo.codigo=01001ZB2W0000&processo.foro=1&uuidCaptcha=sajcaptcha_d1c087a198884723ab35d670baaf13f4"))
-
-#print("+",
-
-#crawler_concatenate_link("https://www.tjms.jus.br/cpopg5/search.do;jsessionid=F8E5227C1A100152C58411A02113AB4B.cpopg1?conversationId=&dadosConsulta.localPesquisa.cdLocal=1&cbPesquisa=NUMPROC&dadosConsulta.tipoNuProcesso=UNIFICADO&numeroDigitoAnoUnificado=", "&foroNumeroUnificado=0001&dadosConsulta.valorConsultaNuUnificado=", "&dadosConsulta.valorConsulta=&uuidCaptcha=sajcaptcha_d1c087a198884723ab35d670baaf13f4", "0821901-51.2018.8.12.0001")
