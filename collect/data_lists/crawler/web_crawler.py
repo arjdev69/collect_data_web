@@ -91,32 +91,35 @@ def verify_space(data_value):
   list_datas = list(unique_everseen(list_datas))
   return list_datas
 
-def get_crawler_list(url):
+def get_crawler_list(courts,url):
 	page_formated = get_url(url)
 	datas_processes = get_crawler_processes(page_formated)
 	datas_parts = get_crawler_parts_processes(page_formated)
 	datas_move = get_crawler_move(page_formated)
 	if (datas_processes and datas_parts and datas_move):
-		datas = set_dict([datas_processes,datas_parts])
+		datas = set_dict(courts,[datas_processes,datas_parts])
 		return datas, datas_move
 	else:
 		return "Não existem informações disponíveis para os parâmetros informados.",""
 
-def crawler_concatenate_link(first_link, second_link, third_link, processes):
+def crawler_concatenate_link(courts,first_link, second_link, third_link, processes):
   processes = str(processes)
   tjms_link_full = first_link + processes[:-5] + second_link + processes + third_link
-  return_list = get_crawler_list(tjms_link_full)
+  return_list = get_crawler_list(courts,tjms_link_full)
   return return_list
 
-def set_dict(data_list):
-  data_processes, alls_keys = put_key()
+def set_dict(courts,data_list):
+  data_processes, alls_keys = put_key(courts)
   for i in range(len(alls_keys)):
     data_processes[alls_keys[i]] = dict(zip(data_processes[alls_keys[i]], data_list[i]))
   return data_processes
 
-def put_key():
+def put_key(courts):
   data_processes = OrderedDict()
-  data_processes['Dados do Processo']  = ['Processo','Classe','Assunto','Distribuicao','Descricao','Controle','Juiz','Valor da Acao','Área']
+  if courts == "SP":
+    data_processes['Dados do Processo']  = ['Processo','Classe','Assunto','Outros Assuntos','Distribuicao','Descricao','Controle','Juiz','Valor da Acao','Área']
+  else:
+    data_processes['Dados do Processo']  = ['Processo','Classe','Assunto','Distribuicao','Descricao','Controle','Juiz','Valor da Acao','Área']
   data_processes['Partes do Processo'] = ['Autora','Réu']
 
   keys = ['Dados do Processo','Partes do Processo']
