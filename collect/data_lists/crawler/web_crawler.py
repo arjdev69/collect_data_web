@@ -77,10 +77,9 @@ def remove_word(word_list,words):
 def get_url(urlSite):
   urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
   http = urllib3.PoolManager()
-  driver = webdriver.Firefox()
   try:
-    driver.get(urlSite)
-    page_formated = BeautifulSoup(driver.page_source)
+    page_data = http.request('GET', urlSite)
+    page_formated = BeautifulSoup(page_data.data, "lxml")
     return page_formated
   except:
     print("Error URL")
