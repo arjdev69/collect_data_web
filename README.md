@@ -6,6 +6,8 @@ Collect data from Brazilian courts' websites.
 
     * Install docker: https://github.com/jobino/learning_docker
 
+    * docker pull arjaraujo/collect-data-crawlers:data
+
     * Running docker: ./docker/access_docker.sh
 
     * Running shell file: ./settings.sh
