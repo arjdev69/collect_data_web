@@ -12,14 +12,12 @@ def get_content_html(page_formated,tag,class_tag,value_class):
   return div_datas
 
 def get_crawler_processes(page_formated):
-  div_datas = get_content_html(page_formated,"div","class","")
+  div_datas = get_content_html(page_formated,"table","class","secaoFormBody")
   if div_datas:
     for table_data in div_datas:
-      span_datas = table_data.find_all("table", {"class": "secaoFormBody"})
-      for span_data in span_datas:
-        span_data_values = span_data.find_all("span", {"class": ""})
-        list_datas = verify_space(span_data_values)
-    spanArea = get_value_tag(span_data,"span","labelClass",'Área: ')
+      span_data_values = table_data.find_all("span", {"class": ""})
+      list_datas = verify_space(span_data_values)
+    spanArea = get_value_tag(table_data,"span","labelClass",'Área: ')
     list_datas.append(spanArea)
     return list_datas
   else:
@@ -28,7 +26,7 @@ def get_crawler_processes(page_formated):
 def get_crawler_parts_processes(page_formated):
   div_datas = get_content_html(page_formated,"table","id","tablePartesPrincipais")
   if div_datas:
-    datas = get_keys_list(div_datas,"td","align","left")
+    datas = get_content_list(div_datas,"td","align","left")
     lista = []
     for ld in datas:
       lista.append(ld.text.strip())
@@ -40,7 +38,7 @@ def get_crawler_move(page_formated):
   div_datas = get_content_html(page_formated,"tbody","id","tabelaUltimasMovimentacoes")
   if div_datas:
     move_describe = []; move_date = []; move_list = dict()
-    td_datas = get_keys_list(div_datas,"td")
+    td_datas = get_content_list(div_datas,"td")
     move_date,move_describe = add_date_move_list(td_datas,move_date,move_describe)
     move_list = zip(move_date,move_describe)
     return move_list
