@@ -28,8 +28,7 @@ def get_crawler_processes(page_formated):
 def get_crawler_parts_processes(page_formated):
   div_datas = get_content_html(page_formated,"table","id","tablePartesPrincipais")
   if div_datas:
-    for dat in div_datas:
-      datas = dat.find_all("td", {"align": "left"})
+    datas = get_keys_list(div_datas,"td","align","left")
     lista = []
     for ld in datas:
       lista.append(ld.text.strip())
@@ -40,11 +39,8 @@ def get_crawler_parts_processes(page_formated):
 def get_crawler_move(page_formated):
   div_datas = get_content_html(page_formated,"tbody","id","tabelaUltimasMovimentacoes")
   if div_datas:
-    move_describe = []
-    move_date = []
-    move_list = dict()
-    for table_data in div_datas:
-      td_datas = table_data.find_all("td")
+    move_describe = []; move_date = []; move_list = dict()
+    td_datas = get_keys_list(div_datas,"td")
     move_date,move_describe = add_date_move_list(td_datas,move_date,move_describe)
     move_list = zip(move_date,move_describe)
     return move_list
@@ -117,3 +113,11 @@ def get_value_tag(html, tag, value_class, specific_content):
   data_values = data_values.parent.text.strip()
   data_values = data_values.replace(specific_content, '')
   return data_values
+
+def get_content_list(div_datas,tag, tag_class="False", value_class="False"):
+  for table_data in div_datas:
+    if ((tag_class != "False") and (value_class != "False")):
+      td_datas = table_data.find_all(tag, {tag_class: value_class})
+    else:
+      td_datas = table_data.find_all(tag)
+  return td_datas
