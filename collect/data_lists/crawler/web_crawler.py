@@ -11,7 +11,7 @@ def get_content_html(page_formated,tag,class_tag,value_class):
     div_datas = False
   return div_datas
 
-def get_crawler_processes(page_formated):
+def get_crawler_processes(page_formated,courts):
   div_datas = get_content_html(page_formated,"table","class","secaoFormBody")
   if div_datas:
     for table_data in div_datas:
@@ -19,7 +19,9 @@ def get_crawler_processes(page_formated):
       list_datas = verify_space(span_data_values)
     spanArea = get_value_tag(table_data,"span","labelClass",'Área: ')
     list_datas.append(spanArea)
-    return list_datas
+    key_list = define_key_list(div_datas,"Descricao: ",courts)
+    key_list.append("Area:")
+    return list_datas,key_list
   else:
     return False
 
@@ -30,7 +32,9 @@ def get_crawler_parts_processes(page_formated):
     lista = []
     for ld in datas:
       lista.append(ld.text.strip())
-    return lista
+    datas = get_content_list(div_datas,"td","align","right")
+    key_list = set_key_list(datas,"span","class","mensagemExibindo","parts")
+    return lista,key_list
   else:
     return False
 
@@ -74,11 +78,11 @@ def verify_space(data_value):
 
 def get_crawler_list(courts,url):
 	page_formated = get_url(url)
-	datas_processes = get_crawler_processes(page_formated)
-	datas_parts = get_crawler_parts_processes(page_formated)
+	datas_processes,keys_processes = get_crawler_processes(page_formated,courts)
+	datas_parts,keys_parts = get_crawler_parts_processes(page_formated)
 	datas_move = get_crawler_move(page_formated)
 	if (datas_processes and datas_parts and datas_move):
-		datas = set_dict(courts,[datas_processes,datas_parts])
+		datas = set_dict([keys_processes,keys_parts],[datas_processes,datas_parts])
 		return datas, datas_move
 	else:
 		return "Não existem informações disponíveis para os parâmetros informados.",""
@@ -89,19 +93,16 @@ def crawler_concatenate_link(courts,first_link, second_link, third_link, process
   return_list = get_crawler_list(courts,tjms_link_full)
   return return_list
 
-def set_dict(courts,data_list):
-  data_processes, alls_keys = put_key(courts)
+def set_dict(keys,data_list):
+  data_processes, alls_keys = put_key(keys)
   for i in range(len(alls_keys)):
     data_processes[alls_keys[i]] = dict(zip(data_processes[alls_keys[i]], data_list[i]))
   return data_processes
 
-def put_key(courts):
+def put_key(keys):
   data_processes = OrderedDict()
-  if courts == "SP":
-    data_processes['Dados do Processo']  = ['Processo','Classe','Assunto','Outros Assuntos','Distribuicao','Descricao','Controle','Juiz','Valor da Acao','Área']
-  else:
-    data_processes['Dados do Processo']  = ['Processo','Classe','Assunto','Distribuicao','Descricao','Controle','Juiz','Valor da Acao','Área']
-  data_processes['Partes do Processo'] = ['Autora','Réu']
+  data_processes['Dados do Processo']  = keys[0]
+  data_processes['Partes do Processo'] = keys[1]#['Autora','Réu']
 
   keys = ['Dados do Processo','Partes do Processo']
   return data_processes,keys
@@ -119,3 +120,22 @@ def get_content_list(div_datas,tag, tag_class="False", value_class="False"):
     else:
       td_datas = table_data.find_all(tag)
   return td_datas
+
+def define_key_list(div_datas,key_name,courts):
+  key_list = set_key_list(div_datas,"label","class","labelClass","datas")
+  if courts == "SP":
+    key_list[4:5] = [key_list[4],key_name]
+  else:
+    key_list[3:4] = [key_list[4],key_name]
+  return key_list
+
+def set_key_list(div_datas,tag,class_tag,value_class,type_processes):
+  if type_processes == "parts":
+    datas = div_datas
+  else:
+    datas = get_content_list(div_datas,tag,class_tag,value_class)
+
+  for i in range(len(datas)):
+    datas[i] = datas[i].text.strip()
+    print(datas[i])
+  return datas
