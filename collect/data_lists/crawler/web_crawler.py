@@ -137,5 +137,4 @@ def set_key_list(div_datas,tag,class_tag,value_class,type_processes):
 
   for i in range(len(datas)):
     datas[i] = datas[i].text.strip()
-    print(datas[i])
   return datas
