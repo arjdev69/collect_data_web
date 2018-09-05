@@ -23,7 +23,7 @@ def get_crawler_processes(page_formated,courts):
     key_list.append("Area:")
     return list_datas,key_list
   else:
-    return False
+    return False,False
 
 def get_crawler_parts_processes(page_formated):
   div_datas = get_content_html(page_formated,"table","id","tablePartesPrincipais")
@@ -36,7 +36,7 @@ def get_crawler_parts_processes(page_formated):
     key_list = set_key_list(datas,"span","class","mensagemExibindo","parts")
     return lista,key_list
   else:
-    return False
+    return False,False
 
 def get_crawler_move(page_formated):
   div_datas = get_content_html(page_formated,"tbody","id","tabelaUltimasMovimentacoes")
@@ -47,7 +47,7 @@ def get_crawler_move(page_formated):
     move_list = zip(move_date,move_describe)
     return move_list
   else:
-    return False
+    return False,False
 
 def add_date_move_list(td_datas,move_date,move_describe):
   for i in range(len(td_datas)):
